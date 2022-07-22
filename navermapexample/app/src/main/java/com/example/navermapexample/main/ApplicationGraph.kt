@@ -8,12 +8,14 @@ import com.example.navermapexample.location.FusedLocationModule
 import com.example.navermapexample.repository.RouteReposiotry
 import com.example.navermapexample.repository.RouteRepositoryModule
 import com.example.navermapexample.room.RoomDB
+import com.example.navermapexample.step.StepManagerModule
 
 class ApplicationGraph(private val context: Context){
     private val fusedLocationManagerInternal by lazy { FusedLocationModule(context).createFusedLocationManager() }
     private val gpsManagerInternal by lazy { GpsModule(context).createGpsManager() }
     private val roomDBInternal by lazy { RoomDB.getInstance(context)}
     private val routeRepositoryInternal by lazy { RouteRepositoryModule().createRouteRepository() }
+    private val stepManagerInternal by lazy { StepManagerModule(context).createStepManager() }
 
     companion object{
         @JvmStatic
@@ -31,5 +33,7 @@ class ApplicationGraph(private val context: Context){
         fun getGpsManager() = graph!!.gpsManagerInternal
         fun getRoomDB() = graph!!.roomDBInternal
         fun getRouteRepository() = graph!!.routeRepositoryInternal
+        fun getStepManager() = graph!!.stepManagerInternal
+
     }//companion object
 }

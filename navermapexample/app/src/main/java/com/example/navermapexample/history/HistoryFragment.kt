@@ -63,11 +63,13 @@ class HistoryFragment : Fragment() {
     inner class RouteHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val name: TextView = itemView.findViewById<TextView>(R.id.text_name)
         val distance: TextView = itemView.findViewById<TextView>(R.id.text_distance)
+        val step: TextView = itemView.findViewById(R.id.text_step)
         val btn_getRoute: Button = itemView.findViewById(R.id.btn_getRoute)
 
         public fun bind(item : RouteEntity){
             name.text = item.name
             distance.text = item.distance.toString()
+            step.text = item.step.toString()
             btn_getRoute.setOnClickListener {
                 listener?.onRouteSelected(item)
             }

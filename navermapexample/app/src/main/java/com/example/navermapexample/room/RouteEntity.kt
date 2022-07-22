@@ -10,6 +10,7 @@ import java.io.Serializable
 data class RouteEntity (
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "distance") var distance: String, //insert시점 시스템 시간
+    @ColumnInfo(name = "step") var step: String,
     @ColumnInfo(name = "gpsdata") var gpsdata: List<LocationEntity> //insert시점 시스템 시간
     ) : Serializable{
         @PrimaryKey(autoGenerate = true) var id: Int = 0

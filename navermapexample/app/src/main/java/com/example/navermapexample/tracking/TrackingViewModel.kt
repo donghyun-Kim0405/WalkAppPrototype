@@ -9,6 +9,7 @@ import com.example.navermapexample.gps.GpsManager
 import com.example.navermapexample.main.ApplicationGraph
 import com.example.navermapexample.room.LocationEntity
 import com.example.navermapexample.room.RouteEntity
+import com.example.navermapexample.step.StepManager
 import com.naver.maps.geometry.LatLng
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,9 +19,11 @@ import okhttp3.internal.notifyAll
 
 class TrackingViewModel : ViewModel() {
     private val gpsManager = ApplicationGraph.getGpsManager()
+    private val stepManager = ApplicationGraph.getStepManager()
     private val roomDB = ApplicationGraph.getRoomDB()
 
     private val gpsListener = createGpsListener()
+    private val stepListener = createStepListener()
 
     public var routeName: String? = "TEST"
     public var route: MutableLiveData<ArrayList<LatLng>> = MutableLiveData<ArrayList<LatLng>>().apply {
@@ -43,14 +46,23 @@ class TrackingViewModel : ViewModel() {
             locationEntitys = ArrayList()
             registerListener()
             gpsManager.startListening()
+
+            stepManager.registerListener(stepListener)
+            stepManager.startSensor()
         }
+
     }
 
+    /** 주의! data insert 한후 센서 동작 정지 및 데이터 초기화 **/
     public fun stop(){
         if (gpsManager.isListening()) {
+            insertRouteData()
+
             unRegisterListener()
             gpsManager.stopListening()
-            insertRouteData()
+
+            stepManager.unRegisterListener(stepListener)
+            stepManager.stopSensor()
         }
     }
 
@@ -67,6 +79,7 @@ class TrackingViewModel : ViewModel() {
         val routeEntity = RouteEntity(
             name = routeName!!,
             distance = totalDistance.toString(),
+            step= stepManager.getStep().toString(),
             gpsdata = locationEntitys
         )
 
@@ -76,7 +89,6 @@ class TrackingViewModel : ViewModel() {
         }
 
     }
-
 
 
     /** 최소 이동거리가 1미터 이상일 경우에만 View를 갱신 & 데이터 저장 */
@@ -115,6 +127,13 @@ class TrackingViewModel : ViewModel() {
             baseLocation = location
             Log.e(TAG, route.value!!.size.toString())
         }
+    }
+
+    private fun createStepListener() = object : StepManager.Listener{
+        override fun onSensorDataChanged() {
+            Log.e(TAG, stepManager.getStep().toString())
+        }
+
     }
 
 
