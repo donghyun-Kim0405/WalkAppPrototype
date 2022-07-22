@@ -4,7 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../Desktop/NaverMapExample/app/src/main/res/layout/activity_main.xml" value="0.37604166666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.360054347826087" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.360054347826087" />
+        <entry key="app/src/main/res/layout/fragment_route.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/fragment_search_path.xml" value="0.3619791666666667" />
+        <entry key="app/src/main/res/layout/fragment_tracking.xml" value="0.35960591133004927" />
+        <entry key="app/src/main/res/layout/item_route_layout.xml" value="0.2513586956521739" />
+        <entry key="app/src/main/res/menu/activity_main_bottom_nav.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/menu/menu_more.xml" value="0.37604166666666666" />
       </map>
     </option>
   </component>

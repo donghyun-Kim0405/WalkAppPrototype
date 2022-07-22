@@ -1,4 +1,4 @@
-package com.example.navermapexample.main
+package com.example.navermapexample
 
 import androidx.annotation.Keep
 import java.util.*

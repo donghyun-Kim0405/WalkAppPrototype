@@ -1,8 +1,7 @@
-package com.example.navermapexample.main
+package com.example.navermapexample.search_path
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.core.graphics.green
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.navermapexample.main.MainRepository
@@ -12,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class SearchPathViewModel : ViewModel(){
     private val repository: MainRepository = MainRepository()
     public var markers: ArrayList<Marker> = ArrayList()
     public var markerLatLng = ArrayList<LatLng>()
